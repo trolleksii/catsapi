@@ -85,6 +85,14 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'EXCEPTION_HANDLER': 'apps.api.exceptions.core_exception_handler',
+    'NON_FIELD_ERRORS_KEY': 'error'
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -122,4 +130,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+STATIC_URL = 'https://static.cats.wanderingcypriot.co.uk/'
+STATIC_ROOT = '/var/www/catapi/static/'
