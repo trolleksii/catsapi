@@ -5,7 +5,7 @@ from django.utils.text import slugify
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from catapi.settings import STATIC_URL
+from catapi.settings import MEDIA_URL
 
 from .models import Breed, Cat
 
@@ -49,7 +49,7 @@ class CatSerializer(serializers.ModelSerializer):
         return super(serializers.Serializer, self).data
 
     def to_representation(self, obj):
-        return STATIC_URL + obj.image.name
+        return MEDIA_URL + obj.image.name
 
     def create(self, validated_data):
         return Cat.objects.create(**validated_data)
