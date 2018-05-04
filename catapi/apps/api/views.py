@@ -1,4 +1,4 @@
-import random as rnd
+from random import randint
 
 from django.db.models import Count
 
@@ -14,7 +14,7 @@ from .shortcuts import get_object_or_404
 
 
 class BreedAPIView(APIView):
-    permission_classes = AllowAny, 
+    permission_classes = AllowAny,
     serializer_class = BreedSerializer
 
     def get(self, request):
@@ -61,6 +61,7 @@ class CatAPIView(APIView):
 
     def post(self, request, breed_slug):
         img_file = request.data.get('file', '')
+        print(img_file)
         breed = get_object_or_404(Breed, slug=breed_slug)
         serializer = self.serializer_class(
             data={
@@ -80,7 +81,7 @@ class CatAPIView(APIView):
 
 
 class RandomCatAPIView(APIView):
-    permission_classes = AllowAny, 
+    permission_classes = AllowAny,
     serializer_class = CatSerializer
 
     def get(self, request, breed_slug):
@@ -91,7 +92,7 @@ class RandomCatAPIView(APIView):
             'message': None
         }
         if cats_count:
-            pos = rnd.randint(0, cats_count - 1)
+            pos = randint(0, cats_count - 1)
             random_cat = breed.cats.filter()[pos]
             serializer = self.serializer_class(random_cat)
             data['message'] = serializer.data

@@ -16,8 +16,7 @@ class Cat(models.Model):
     def get_file_path(instance, filename):
         extension = filename.split('.')[-1]
         unique_filename = '{}.{}'.format(uuid4(), extension)
-        #TODO : path to production static folder
-        return 'static/{}/{}'.format(instance.breed.slug, unique_filename)
+        return '{}/{}'.format(instance.breed.slug, unique_filename)
 
     breed = models.ForeignKey(Breed, related_name='cats', on_delete=models.CASCADE)
     image = models.ImageField(upload_to=get_file_path)
