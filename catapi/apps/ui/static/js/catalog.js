@@ -23,12 +23,12 @@ function populateCatList(data) {
 function showImgKeypress() {
     sel = document.getElementById("breed_selector")
     slug = document.getElementById("breed_selector").selectedOptions[0].value
-    queryAPIforList("/api/breeds/"+slug+"/random", displayImage)
+    queryAPIforList("/api/breeds/" + slug + "/random", displayImage)
 }
 
 function displayImage(data) {
     holder = document.getElementById("img_holder")
-    holder.innerHTML = "<img src='" + data + "'>"
+    holder.innerHTML = '<a href="' + data + '"><img id="img_preview" src="' + data + '"></a>'
 }
 
 queryAPIforList("/api/breeds", populateCatList)
