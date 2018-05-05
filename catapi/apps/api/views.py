@@ -1,4 +1,3 @@
-from PIL import Image
 from random import randint
 
 from django.db.models import Count
@@ -49,7 +48,7 @@ class CatAPIView(APIView):
     permission_classes = AllowAny,
     serializer_class = CatSerializer
     # size in Bytes
-    MAX_FILE_SIZE = 409600
+    MAX_FILE_SIZE = 509600
 
     def get(self, request, breed_slug):
         breed = get_object_or_404(Breed, slug=breed_slug)
