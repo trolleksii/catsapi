@@ -129,7 +129,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = os.environ.get('STATIC_URL', 'http://localhost:8000/static/')
+STATIC_URL = os.environ.get('STATIC_URL', '/static/')
 MEDIA_URL = STATIC_URL + 'images/'
 STATIC_ROOT = os.environ.get('STATIC_ROOT', 'static/')
 MEDIA_ROOT = STATIC_ROOT + 'images/'
