@@ -1,3 +1,4 @@
+from PIL import Image
 from random import randint
 
 from django.db.models import Count
@@ -8,6 +9,7 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from .exceptions import PayloadTooLarge
 from .models import Breed
 from .serializers import BreedSerializer, CatSerializer
 from .shortcuts import get_object_or_404
@@ -46,6 +48,8 @@ class CatAPIView(APIView):
     parser_classes = (MultiPartParser, FormParser)
     permission_classes = AllowAny,
     serializer_class = CatSerializer
+    # size in Bytes
+    MAX_FILE_SIZE = 409600
 
     def get(self, request, breed_slug):
         breed = get_object_or_404(Breed, slug=breed_slug)
@@ -61,7 +65,9 @@ class CatAPIView(APIView):
 
     def post(self, request, breed_slug):
         img_file = request.data.get('file', '')
-        print(img_file)
+        if img_file.size >= self.MAX_FILE_SIZE:
+            msg = 'File size should be less than {}KB'.format(self.MAX_FILE_SIZE // 1024)
+            raise PayloadTooLarge(msg)
         breed = get_object_or_404(Breed, slug=breed_slug)
         serializer = self.serializer_class(
             data={
