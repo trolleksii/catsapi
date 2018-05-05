@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body_block %}
+<div class="container">
+    <ul id="breeds_list_id">
+    </ul>
+</div>
+{% endblock %}
+{% block script_block %}
+<script src="{% static 'js/breeds.js' %}"></script>
+{% endblock %}

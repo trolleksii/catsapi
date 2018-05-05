@@ -1,29 +1,5 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
-    <title>Cat Catalog API</title>
-</head>
-<body>
-        <nav class="navbar navbar-default navbar-static-top">
-                <div class="container-fluid">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li><a class="navbar-brand" href="#">Cat Catalog</a></li>
-                        <li><a id="id_nav_list" href="#">Breeds List</a></li>
-                        <li><a id="id_nav_specs" href="#">API Specs</a></li>
-                        <li><a id="id_nav_submit" href="#">Upload Cat Image</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a id='github_href' href="https://github.com/trolleksii/catsapi"><img src="{% static 'img/octocat.png' %}">GitHub</a></li>
-                    </ul>
-                </div>
-        </nav>
-    <div class="container">
+{% extends "base.html" %}
+{% block body_block %}
         <h1>Welcome to the Cat catalog!</h1>
         <div id="container">   
             <h3>Please select a cat breed:</h3>
@@ -33,9 +9,4 @@
             <div id="img_holder">
             </div>
         </div> 
-    </div>
-</body>
-<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/catalog.js' %}"></script>
-</html>
+{% endblock %}
