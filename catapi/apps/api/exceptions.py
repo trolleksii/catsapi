@@ -1,4 +1,6 @@
+from rest_framework.exceptions import APIException
 from rest_framework.views import exception_handler
+from rest_framework import status
 
 
 def core_exception_handler(exc, context):
@@ -16,3 +18,9 @@ def _wrap_error_response(response):
         'message': response.data
     }
     return response
+
+
+class PayloadTooLarge(APIException):
+    status_code = status.HTTP_413_REQUEST_ENTITY_TOO_LARGE
+    default_detail = 'Payload size is too large.'
+    default_code = 'size_limit_exceeded'
