@@ -35,7 +35,7 @@
 <pre>
 {
   "status": "success",
-  "message": "{% url 'ui:index_page' %}static/images/abyssinian/4887f792-796a-4f7d-b444-89c254f327c7.jpg"
+  "message": "{{ site_url }}static/images/abyssinian/4887f792-796a-4f7d-b444-89c254f327c7.jpg"
 }
 </pre>
 <h4 id="mult_imgs">Multiple cat images</h4>
@@ -43,9 +43,9 @@
 {
   "status": "success",
   "message": [
-    "message": "{% url 'ui:index_page' %}static/images/abyssinian/4887f792-796a-4f7d-b434-89c253f327c7.jpg",
-    "message": "{% url 'ui:index_page' %}static/images/abyssinian/69115af0-db84-4aa4-955e-17719f7e2b7b.jpeg",
-    "message": "{% url 'ui:index_page' %}static/images/abyssinian/5dc9bd98-3ad6-4a3b-802b-17d89118b7b5.png"
+    "message": "{{ site_url }}static/images/abyssinian/4887f792-796a-4f7d-b434-89c253f327c7.jpg",
+    "message": "{{ site_url }}static/images/abyssinian/69115af0-db84-4aa4-955e-17719f7e2b7b.jpeg",
+    "message": "{{ site_url }}static/images/abyssinian/5dc9bd98-3ad6-4a3b-802b-17d89118b7b5.png"
   ]
 }
 </pre>
@@ -65,11 +65,11 @@ Status code of response corresponds to the error type.
 
 <h2>API Endpoints</h2>
 <h4>Get list of available breeds:</h4>
-<div class="well well-sm">GET {% url 'ui:index_page' %}api/breeds</div>
+<div class="well well-sm">GET {{ site_url }}api/breeds</div>
 <p>Returns <a href="#mult_breeds">'Multiple breeds'</a></p>
 
 <h4>Add a new breed to the list:</h4>
-<div class="well well-sm">POST {% url 'ui:index_page' %}api/breeds</div>
+<div class="well well-sm">POST {{ site_url }}api/breeds</div>
 <p>Example request body:</p>
 <pre>
 {
@@ -81,15 +81,15 @@ Status code of response corresponds to the error type.
 <p>Returns added <a href="#one_breed">'Cat breed'</a></p>
 
 <h4>Get a list of images of the specific breed:</h4>
-<div class="well well-sm">GET {% url 'ui:index_page' %}api/breeds/<strong>:breed</strong></div>
+<div class="well well-sm">GET {{ site_url }}api/breeds/<strong>:breed</strong></div>
 <p>Returns <a href="#mult_imgs">'Multiple images'</a></p>
 
 <h4>Get a random image of the specific breed:</h4>
-<div class="well well-sm">GET {% url 'ui:index_page' %}api/breeds/<strong>:breed</strong>/random</div>
+<div class="well well-sm">GET {{ site_url }}api/breeds/<strong>:breed</strong>/random</div>
 <p>Returns a <a href="#cat_img">'Cat image'</a></p>
 
 <h4>Upload an image of the specific cat breed:</h4>
-<div class="well well-sm">POST {% url 'ui:index_page' %}api/breeds/<strong>:breed</strong></div>
+<div class="well well-sm">POST {{ site_url }}api/breeds/<strong>:breed</strong></div>
 <p>Use <strong>multipart/form-data</strong> to upload the image. Image size is limited to <strong>500KB</strong></p>
 <p>Returns added <a href="#cat_img">'Cat image'</a></p>
 
