@@ -20,12 +20,12 @@ class BreedSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         name = attrs.get('name', '')
         # check for non alphabet symbols or spaces and bring to uniform look
-        has_bad_symbols = re.search(r'[^\s\w]', name)
+        has_bad_symbols = re.search(r'[^\-a-zA-Z\s]', name)
         if has_bad_symbols:
             msg = 'Name should be only of alphabet symbols and spaces'
             raise ValidationError(msg)
         name = ' '.join([x.capitalize() for x in name.split()])
-        # native DRF validators do not take into account trailing spaces etc
+        # native DRF validators do not take into account multiple spaces etc
         if Breed.objects.filter(name=name).exists():
             msg = 'This breed is already in the db'
             raise ValidationError(msg)
