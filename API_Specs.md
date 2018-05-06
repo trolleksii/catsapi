@@ -45,7 +45,7 @@ All data are returned in JSON format.
 ```JSON
 {
   "status": "success",
-  "message": "{{ site_url }}static/images/abyssinian/4887f792-796a-4f7d-b444-89c254f327c7.jpg"
+  "message": "static/images/abyssinian/4887f792-796a-4f7d-b444-89c254f327c7.jpg"
 }
 ```
 
@@ -55,10 +55,10 @@ All data are returned in JSON format.
 ```JSON
 {
   "status": "success",
-  "message": [
-    "message": "{{ site_url }}static/images/abyssinian/4887f792-796a-4f7d-b434-89c253f327c7.jpg",
-    "message": "{{ site_url }}static/images/abyssinian/69115af0-db84-4aa4-955e-17719f7e2b7b.jpeg",
-    "message": "{{ site_url }}static/images/abyssinian/5dc9bd98-3ad6-4a3b-802b-17d89118b7b5.png"
+  "message": [  
+      "static/images/abyssinian/4887f792-796a-4f7d-b434-89c253f327c7.jpg",
+      "static/images/abyssinian/69115af0-db84-4aa4-955e-17719f7e2b7b.jpeg",
+      "static/images/abyssinian/5dc9bd98-3ad6-4a3b-802b-17d89118b7b5.png"
   ]
 }
 ```

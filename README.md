@@ -46,4 +46,4 @@ git clone https://github.com/trolleksii/catsapi.git
 
 This app has an index page with a brief description of its functionality and very simple demo that fetches random images for selected breed.
 
-Feel free to check out the [API specs]() on GitHub and use this API with a fancier front-end.
+Feel free to check out the [API specs](https://github.com/trolleksii/catsapi/blob/master/API_Specs.md) on GitHub and use this API with a fancier front-end.
