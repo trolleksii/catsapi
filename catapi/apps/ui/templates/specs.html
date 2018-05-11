@@ -90,8 +90,10 @@ Status code of response corresponds to the error type.
 
 <h4>Upload an image of the specific cat breed:</h4>
 <div class="well well-sm">POST {{ site_url }}api/breeds/<strong>:breed</strong></div>
-<p>Use <strong>multipart/form-data</strong> to upload the image. Image size is limited to <strong>500KB</strong></p>
+<p>Use <strong>multipart/form-data</strong> to upload the image. Image size is limited to <strong>500KB</strong>.
+You should name your file(s) with the same name `files` in request, for example:
+<pre>
+  curl -F files=@image1.jpg -F files=@image2.png localhost:8000/api/breeds/british-longhair
+</pre>
 <p>Returns added <a href="#cat_img">'Cat image'</a></p>
-
-
 {% endblock %}

@@ -124,6 +124,11 @@ Returns a [Cat image](#cat-image)
 
 `POST api/breeds/:breed`
 
-Use <b>multipart/form-data</b> to upload the image. Image size is limited to <b>500KB</b>
+Use <b>multipart/form-data</b> to upload the one ore more images. Image size is limited to <b>500KB</b>
+You should name your file(s) with the same name `files` in request, e.g.
+
+```SH
+curl -F files=@image1.jpg -F files=@image2.png localhost:8000/api/breeds/british-longhair
+```
 
 Returns a [Cat image](#cat-image) which was added

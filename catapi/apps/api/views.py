@@ -63,16 +63,16 @@ class CatAPIView(APIView):
         )
 
     def post(self, request, breed_slug):
-        img_file = request.data.get('file', '')
-        if img_file.size >= self.MAX_FILE_SIZE:
-            msg = 'File size should be less than {}KB'.format(self.MAX_FILE_SIZE // 1024)
-            raise PayloadTooLarge(msg)
         breed = get_object_or_404(Breed, slug=breed_slug)
+        ulpoad_files = request.data.getlist('files')
+        data = [{'breed': breed.pk, 'image': img} for img in ulpoad_files if self._file_size_is_ok(img)] or [{}]
+        many = True
+        if len(data) == 1:
+                data = data.pop()
+                many = False
         serializer = self.serializer_class(
-            data={
-                'breed': breed.pk,
-                'image': img_file
-            }
+            data=data,
+            many=many
         )
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -83,6 +83,12 @@ class CatAPIView(APIView):
             },
             status=status.HTTP_201_CREATED
         )
+
+    def _file_size_is_ok(self, img_file):
+        if img_file.size >= self.MAX_FILE_SIZE:
+            msg = 'File size should be less than {}KB'.format(self.MAX_FILE_SIZE // 1024)
+            raise PayloadTooLarge(msg)
+        return True
 
 
 class RandomCatAPIView(APIView):
