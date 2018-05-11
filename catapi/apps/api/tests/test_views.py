@@ -90,11 +90,28 @@ class CatAPIViewTests(CatTests):
         upload_file = SimpleUploadedFile('image.jpeg', stream.read(), content_type='image/jpeg')
         response = self.client.post(
             reverse('api:list_create_cat', kwargs={'breed_slug': self.breed.slug}),
-            data={'file': upload_file}
+            data={'files': upload_file}
         )
         self.assertEquals(response.data['status'], 'success')
         final_cats_count = len(Cat.objects.filter(breed__slug=self.breed.slug))
         self.assertEquals(final_cats_count, cats_count + 1)
+
+    def test_post_multiple_cats(self):
+        cats_count = len(Cat.objects.filter(breed__slug=self.breed.slug))
+        imgs_num = 2
+        stream = BytesIO()
+        Image.new('RGB', (500, 500)).save(stream, 'JPEG')
+        stream.seek(0)
+        upload_file1 = SimpleUploadedFile('image.jpeg', stream.read(), content_type='image/jpeg')
+        stream.seek(0)
+        upload_file2 = SimpleUploadedFile('image.jpeg', stream.read(), content_type='image/jpeg')
+        response = self.client.post(
+            reverse('api:list_create_cat', kwargs={'breed_slug': self.breed.slug}),
+            data={'files': [upload_file1, upload_file2]}
+        )
+        self.assertEquals(response.data['status'], 'success')
+        final_cats_count = len(Cat.objects.filter(breed__slug=self.breed.slug))
+        self.assertEquals(final_cats_count, cats_count + imgs_num)
 
     def test_post_new_cat_large_file(self):
         stream = BytesIO()
@@ -103,7 +120,7 @@ class CatAPIViewTests(CatTests):
         upload_file = SimpleUploadedFile('image.jpeg', stream.read(), content_type='image/jpeg')
         response = self.client.post(
             reverse('api:list_create_cat', kwargs={'breed_slug': self.breed.slug}),
-            data={'file': upload_file}
+            data={'files': upload_file}
         )
         self.assertEquals(response.data['status'], 'error')
 
