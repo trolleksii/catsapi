@@ -1,12 +1,16 @@
 {% extends "base.html" %}
+{% load static %}
 {% block body_block %}
         <h1>Welcome to the Cat catalog!</h1>
         <div id="container">   
             <h3>Please select a cat breed:</h3>
             <select id="breed_selector">
             </select><br>
-            <button onclick="showImgKeypress()">Show Random Image</button>
+            <button id="cat_img_btn">Show Random Image</button>
             <div id="img_holder">
             </div>
         </div> 
+{% endblock %}
+{% block script_block %}
+<script src="{% static 'js/catalog.js' %}"></script>
 {% endblock %}
