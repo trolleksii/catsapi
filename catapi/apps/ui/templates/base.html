@@ -12,18 +12,18 @@
     <title>Cat Catalog API</title>
 </head>
 <body>
-        <nav class="navbar navbar-default navbar-static-top">
-                <div class="container-fluid">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li><a class="navbar-brand" href="{% url 'ui:index_page' %}">Cat Catalog</a></li>
-                        <li><a id="id_nav_breeds" href="{% url 'ui:breeds_page' %}">Breeds List</a></li>
-                        <li><a id="id_nav_specs" href="{% url 'ui:specs_page' %}">API Specs</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a id='github_href' href="https://github.com/trolleksii/catsapi"><img src="{% static 'img/octocat.png' %}">GitHub</a></li>
-                    </ul>
-                </div>
-        </nav>
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a class="navbar-brand" href="{% url 'ui:index_page' %}">Cat Catalog</a></li>
+                <li><a id="id_nav_breeds" href="{% url 'ui:breeds_page' %}">Breeds List</a></li>
+                <li><a id="id_nav_specs" href="{% url 'ui:specs_page' %}">API Specs</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a id='github_href' href="https://github.com/trolleksii/catsapi"><img src="{% static 'img/octocat.png' %}">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
     {% block body_block %}
     {% endblock %}
@@ -32,6 +32,5 @@
 <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 {% block script_block %}
-<script src="{% static 'js/catalog.js' %}"></script>
 {% endblock %}
 </html>
