@@ -30,8 +30,7 @@ class BreedAPIView(APIView):
         )
 
     def post(self, request):
-        data = request.data.get('breed', None)
-        serializer = self.serializer_class(data=data)
+        serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(
