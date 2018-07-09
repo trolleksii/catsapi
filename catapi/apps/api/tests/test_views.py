@@ -35,7 +35,7 @@ class BreedAPIViewTests(TestCase):
         data = {'name': 'British longhair'}
         response = self.client.post(
             reverse('api:list_create_breed'),
-            data=json.dumps({'breed': data}),
+            data=json.dumps(data),
             content_type='application/json'
         )
         self.assertEquals(response.data['status'], 'success')
@@ -48,7 +48,7 @@ class BreedAPIViewTests(TestCase):
         data = {'name': 'British longhair1'}
         response = self.client.post(
             reverse('api:list_create_breed'),
-            data=json.dumps({'breed': data}),
+            data=json.dumps(data),
             content_type='application/json'
         )
         self.assertEquals(response.data['status'], 'error')
