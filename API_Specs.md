@@ -97,9 +97,7 @@ Example request body:
 
 ```JSON
 {
-  "breed": {
-    "name": "cornish rex"
-  }
+  "name": "cornish rex"
 }
 ```
 

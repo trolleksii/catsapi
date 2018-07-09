@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block body_block %}
 <h2>JSON Objects returned by API</h2>
 <h4 id="one_breed">Cat breed</h4>
@@ -73,9 +74,7 @@ Status code of response corresponds to the error type.
 <p>Example request body:</p>
 <pre>
 {
-  "breed": {
-    "name": "cornish rex"
-  }
+  "name": "cornish rex"
 }
 </pre>
 <p>Returns added <a href="#one_breed">'Cat breed'</a></p>
