@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'apps.api',
-    'apps.ui'
 ]
 
 MIDDLEWARE = [
@@ -133,14 +132,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
+TIME_ZONE = 'America/Toronto'
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
@@ -150,3 +144,13 @@ STATIC_URL = os.environ.get('STATIC_URL', '/static/')
 MEDIA_URL = STATIC_URL + 'images/'
 STATIC_ROOT = os.environ.get('STATIC_ROOT', 'static/')
 MEDIA_ROOT = STATIC_ROOT + 'images/'
+
+if not DEBUG:
+
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    SECURE_SSL_REDIRECT = True
+
+    SESSION_COOKIE_SECURE = True
+
+    CSRF_COOKIE_SECURE = True
