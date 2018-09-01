@@ -70,13 +70,19 @@ class RandomCatAPIView(APIView):
     permission_classes = AllowAny,
     serializer_class = CatSerializer
 
-    def get(self, request, breed_slug):
-        breed = get_object_or_404(Breed, slug=breed_slug)
-        cats_count = breed.cats.aggregate(count=Count('pk'))['count']
+    def get_queryset(self, slug):
+        if slug:
+            breed = get_object_or_404(Breed, slug=slug)
+            return breed.cats
+        return Cat.objects.all()
+
+    def get(self, request, breed_slug=None):
+        qset = self.get_queryset(breed_slug)
+        cats_count = qset.aggregate(count=Count('pk'))['count']
         data = {'message': None}
         if cats_count:
             pos = randint(0, cats_count - 1)
-            random_cat = breed.cats.filter()[pos]
+            random_cat = qset.filter()[pos]
             serializer = self.serializer_class(random_cat)
             data['message'] = serializer.data
         return Response(data, status=status.HTTP_200_OK)

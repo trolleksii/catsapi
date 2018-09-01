@@ -131,7 +131,7 @@ class RandomCatAPIViewTests(CatTests):
 
     def test_get_random_cat_of_breed(self):
         response = self.client.get(
-            reverse('api:get_random_cat', kwargs={'breed_slug': self.breed.slug}),
+            reverse('api:get_random_of_breed', kwargs={'breed_slug': self.breed.slug}),
             content_type='application/json'
         )
         self.assertIn(self.breed.slug, response.data['message'])
@@ -139,7 +139,7 @@ class RandomCatAPIViewTests(CatTests):
 
     def test_get_random_wrong_breed(self):
         response = self.client.get(
-            reverse('api:get_random_cat', kwargs={'breed_slug': 'wrong-breed'}),
+            reverse('api:get_random_of_breed', kwargs={'breed_slug': 'wrong-breed'}),
             content_type='application/json'
         )
         self.assertEquals(response.status_code, status.HTTP_404_NOT_FOUND)
