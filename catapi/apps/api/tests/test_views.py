@@ -129,6 +129,14 @@ class CatAPIViewTests(CatTests):
 
 class RandomCatAPIViewTests(CatTests):
 
+    def test_get_random_of_all(self):
+        response = self.client.get(
+            reverse('api:get_random'),
+            content_type='application/json'
+        )
+        self.assertIn(self.breed.slug, response.data['message'])
+        self.assertEquals(response.status_code, status.HTTP_200_OK)
+
     def test_get_random_cat_of_breed(self):
         response = self.client.get(
             reverse('api:get_random_of_breed', kwargs={'breed_slug': self.breed.slug}),
